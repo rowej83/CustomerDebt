@@ -21,32 +21,29 @@ namespace CustomerDebt
 	{
 		ToolTip customerFormToolTip=new ToolTip();
 		
-		public bool NewCustomer {
-		get;
-		set;
-		}
+
 		int customerIndex;
 		
 		public int CustomerIndex {
 			get { return customerIndex; }
 			set { customerIndex = value; }
 		}
-		public CustomerForm(bool isNew )
+		public CustomerForm()
 		{
 
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-						this.NewCustomer=isNew;
-			
+			this.CustomerIndex=-1;			
+			//customerindex==-1 if new user
 		
 		}
-		public CustomerForm(bool isNew, int customerIndex){
+		public CustomerForm( int customerIndex){
 		
 		
 			InitializeComponent();
-				this.NewCustomer=isNew;
+			
 			this.customerIndex=customerIndex;
 			
 		}
@@ -93,14 +90,7 @@ customerEmail.Text="";
 //				MessageBox.Show("Not valid email");
 //			}
 			
-			if(this.NewCustomer==true)
-			{
-			//create new customer
-
-			}else{
-				//edit current customer
-				
-			}
+			
 			
 			
 		}

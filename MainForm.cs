@@ -88,12 +88,18 @@ namespace CustomerDebt
 		void EditCustomerClick(object sender, EventArgs e)
 		{
 			
+			if(Convert.ToInt32(customerList.SelectedValue)<0){return;}
+			
 			if(checkCustomerForm()==true)
 			{customerForm.Close();}
 			else
 			{
-				customerForm=new CustomerForm(false,Convert.ToInt32(customerList.SelectedValue));
+				customerForm=new CustomerForm(Convert.ToInt32(customerList.SelectedValue));
 				customerForm.Text="Edit Customer Info";
+				Customer currentCustomer=db.getCustomer(Convert.ToInt32(customerForm.CustomerIndex));
+				customerForm.customerName.Text=currentCustomer.Name;
+				customerForm.customerEmail.Text=currentCustomer.Email;
+				customerForm.customerPhone.Text=currentCustomer.Phone;
 				customerForm.Show();}
 			//customerForm=new CustomerForm();
 			//customerForm.Show();
@@ -168,8 +174,9 @@ namespace CustomerDebt
 			}
 			else
 			{
-				customerForm=new CustomerForm(true);
+				customerForm=new CustomerForm();
 				customerForm.Text="Create Customer";
+				
 				customerForm.Show();
 			}
 			

@@ -168,11 +168,11 @@ namespace CustomerDebt
 		private System.Windows.Forms.Button customerCancel;
 		private System.Windows.Forms.Button customerClear;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.MaskedTextBox customerPhone;
+		internal System.Windows.Forms.MaskedTextBox customerPhone;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.MaskedTextBox customerEmail;
+		internal System.Windows.Forms.MaskedTextBox customerEmail;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.MaskedTextBox customerName;
+		internal System.Windows.Forms.MaskedTextBox customerName;
 		private System.Windows.Forms.GroupBox groupBox1;
 	}
 }
