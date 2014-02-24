@@ -17,24 +17,22 @@ namespace CustomerDebt
 	{
 		public int ID{get;set;}
 		public string Name{get;set;}
-		public string Address{get;set;}
 		public string Email{get;set;}
 		public string Phone{get;set;}
 		
-		public Customer(string name,string address,string email, string phone="")
+		public Customer(string name,string email, string phone="")
 		{
 			//used to save new customer whom doesn't have a ID yet
-			this.Name=name;
-			this.Address=address;
+			this.Name=name;	
 			this.Email=email;
 			this.Phone=phone;
 		}
-		public Customer(int id,string name,string address,string email, string phone="")
+		public Customer(int id,string name,string email, string phone="")
 		{
 			//used to edit customer who already has a ID
 			this.ID=id;
 			this.Name=name;
-			this.Address=address;
+		
 			this.Email=email;
 			this.Phone=phone;
 		}

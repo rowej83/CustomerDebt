@@ -136,7 +136,7 @@ namespace CustomerDebt
 			sqCommand.CommandText=mySelectQuery;
 			sqCommand.Parameters.AddWithValue("@id",index);
 			sqConnection.Open();
-			Console.WriteLine("get customer ran");
+			//Console.WriteLine("get customer ran");
 				SQLiteDataReader sqReader = sqCommand.ExecuteReader();
 		try
 			{
@@ -144,7 +144,7 @@ namespace CustomerDebt
 				{
 					//	Console.WriteLine(sqReader.GetInt32(0) + ", " + sqReader.GetString(1));
 				//	Console.WriteLine(sqReader["name"] + ", " + sqReader.GetInt32(0)+sqReader["address"]);
-				returnCustomer=new Customer(sqReader["name"].ToString(),sqReader["email"].ToString(),sqReader["phone"].ToString());
+				returnCustomer=new Customer(index,sqReader["name"].ToString(),sqReader["email"].ToString(),sqReader["phone"].ToString());
 					
 				}
 			}
