@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ClassDiagram Zoom="1" MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="CustomerDebt.MainForm" Collapsed="False">
+    <Position X="0.5" Y="0.5" Width="3.150998" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="False" />
+      <Compartment Name="Fields" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="CustomerDebt.Program" Collapsed="False">
+    <Position X="0.5" Y="5.8" Width="1.444186" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="CustomerDebt.Sqldb" Collapsed="False">
+    <Position X="0.5" Y="7.2" Width="3.57902" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="False" />
+      <Compartment Name="Fields" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="CustomerDebt.CustomerForm" Collapsed="False">
+    <Position X="0.5" Y="10" Width="2.184093" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+      <Compartment Name="Methods" Collapsed="False" />
+      <Compartment Name="Fields" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="CustomerDebt.Customer" Collapsed="False">
+    <Position X="0.5" Y="15.1" Width="1.560348" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+      <Compartment Name="Methods" Collapsed="False" />
+    </Compartments>
+  </Class>
+  <Class Name="CustomerDebt.Bill" Collapsed="False">
+    <Position X="0.5" Y="17.8" Width="1.332912" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="False" />
+      <Compartment Name="Methods" Collapsed="False" />
+    </Compartments>
+  </Class>
+</ClassDiagram>
