@@ -11,6 +11,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
+using  System.Collections.Generic;
 
 namespace CustomerDebt
 {
@@ -23,6 +25,12 @@ namespace CustomerDebt
 		
 
 		int customerIndex;
+		int customerListIndex;
+		
+		public int CustomerListIndex {
+			get { return customerListIndex; }
+			set { customerListIndex = value; }
+		}
 		
 		public int CustomerIndex {
 			get { return customerIndex; }
@@ -35,13 +43,29 @@ namespace CustomerDebt
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			this.CustomerIndex=-1;			
+			this.CustomerIndex=-1;
 			//customerindex==-1 if new user
-		
+			
 		}
+		
+//		public setCustomerList(){
+//		foreach (Form f in Application.OpenForms)
+//			{
+//				if (f.Text == "MainForm")
+//				{
+//					//  IsOpen = true;
+//				//	IsOpen=true;
+//
+//					// break;
+//
+//				}
+//
+//			}
+//		}
+		
 		public CustomerForm( int customerIndex){
-		
-		
+			
+			
 			InitializeComponent();
 			
 			this.customerIndex=customerIndex;
@@ -56,19 +80,19 @@ namespace CustomerDebt
 		public bool checkIfEmail(string checkemail){
 			
 			//if(this.customerEmail.Text.ToString()==string.Empty){return false;}
-			string regex=@"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" + 
-                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,24}))$";
+			string regex=@"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+				@"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,24}))$";
 			return Regex.IsMatch(checkemail,regex,RegexOptions.IgnoreCase);
 			
-		
-		
+			
+			
 		}
 		
 		void CustomerClearClick(object sender, EventArgs e)
 		{
-		customerName.Text="";
-customerPhone.Text="";
-customerEmail.Text="";
+			customerName.Text="";
+			customerPhone.Text="";
+			customerEmail.Text="";
 		}
 		
 		void CustomerCancelClick(object sender, EventArgs e)
@@ -80,29 +104,51 @@ customerEmail.Text="";
 		
 		void CustomerSaveClick(object sender, EventArgs e)
 		{
-//check if fields are filled out
-if(this.customerName.MaskCompleted && this.customerEmail.MaskCompleted && this.customerPhone.MaskCompleted)
-{
-//all fields are filled out
-MessageBox.Show("All fields filled in");
-return;
-}else{
-//fields missing
+			//check if fields are filled out
+			if(this.customerName.MaskCompleted && this.customerName.Text.Trim() != string.Empty && this.customerEmail.MaskCompleted && checkIfEmail(this.customerEmail.Text.Trim()) && this.customerPhone.MaskCompleted)
+			{
+				
+				//all fields are filled out
+				if(this.CustomerIndex<0)
+				{
+					//new customer
+					
+					Customer newCustomer=new Customer(this.customerName.Text.Trim(),this.customerEmail.Text.Trim(),this.customerPhone.Text.Trim());
+					int returnedInt=MainForm.db.addCustomer(newCustomer);
+					//MainForm.customerBL.Add(new KeyValuePair<int, string>(returnedInt, newCustomer.Name));
+					
+					this.CustomerIndex=returnedInt;
+					ResetCustomerList( new MainForm(true));
+					this.Close();
+				}
+				else
+				{
+					//MessageBox.Show();
+					//current customer..update
+					Customer editCustomer=new Customer(this.CustomerIndex,this.customerName.Text.Trim(),this.customerEmail.Text.Trim(),this.customerPhone.Text.Trim());
+					
+					MainForm.db.editCustomer(editCustomer);
+					
+					//MainForm.customerBL.RemoveAt(this.CustomerListIndex);
+					//MainForm.customerBL.Insert(this.CustomerListIndex,new KeyValuePair<int, string>(this.CustomerIndex, editCustomer.Name));
+					//MainForm.refreshCustomerList();
+					ResetCustomerList( new MainForm(true));
+					this.Close();
+				}
 
-MessageBox.Show("Please check all fields and retry.");
-return;
-}
-			
-			
-			
-			if(this.CustomerIndex<0)
-			{
-				//new customer
+
+			}else{
+				//fields missing
+
+				MessageBox.Show("Please check input and retry.","Customer Input Error");
+				this.customerName.Focus();
+
+				return;
 			}
-			else
-			{
-				//current customer..update
-			}
+			
+			
+			
+			
 			
 			
 			
@@ -110,6 +156,69 @@ return;
 		
 		void CustomerPhoneMaskInputRejected(object sender, MaskInputRejectedEventArgs e)
 		{
+			
+		}
+		void ResetCustomerList(MainForm myForm){
+			//MainForm.customerBL=MainForm.db.GetCustomerNames();
+			//MainForm.customerBL.ResetItem(this.CustomerIndex);
+			myForm.loadCustomerList();
+			//MainForm.customerBL=null;
+			//	myForm.customerList.DataSource=null;
+			//	myForm.customerList.Items.Clear();
+			
+			//	MessageBox.Show(myForm.customerList.Items.Count.ToString());
+			
+			//MainForm.customerBL=MainForm.db.GetCustomerNames();
+			//myForm.customerList.DataSource=MainForm.customerBL;
+		}
+		
+		void CustomerPhoneEnter(object sender, EventArgs e)
+		{
+			
+		//	customerPhone.Select(1,customerPhone.Text.Length);
+			
+		}
+		
+		void CustomerPhoneMouseUp(object sender, MouseEventArgs e)
+		{
+		//customerPhone.Select(0,0);
+		}
+		
+		void CustomerEmailMouseUp(object sender, MouseEventArgs e)
+		{
+			//customerEmail.Select(0,customerEmail.Text.Length);
+		}
+		
+		void CustomerNameKeyUp(object sender, KeyEventArgs e)
+		{
+		}
+		
+		void CustomerNameMouseUp(object sender, MouseEventArgs e)
+		{
+			
+			//customerName.Select(0,customerName.Text.Length);
+		}
+		
+		void CustomerPhoneTabStopChanged(object sender, EventArgs e)
+		{
+			//	customerPhone.Select(0,customerPhone.Text.Length);
+		}
+		
+		void CustomerPhoneTabIndexChanged(object sender, EventArgs e)
+		{
+			
+		}
+		
+		void CustomerNameMaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+		{
+			
+		}
+		
+		void CustomerNameKeyPress(object sender, KeyPressEventArgs e)
+		{
+			if(!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar)){
+				e.Handled=true;
+			}
 			
 		}
 	}

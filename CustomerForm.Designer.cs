@@ -72,7 +72,7 @@ namespace CustomerDebt
 			this.customerClear.Location = new System.Drawing.Point(186, 242);
 			this.customerClear.Name = "customerClear";
 			this.customerClear.Size = new System.Drawing.Size(62, 34);
-			this.customerClear.TabIndex = 8;
+			this.customerClear.TabIndex = 7;
 			this.customerClear.Text = "Clea&r";
 			this.customerClear.UseVisualStyleBackColor = true;
 			this.customerClear.Click += new System.EventHandler(this.CustomerClearClick);
@@ -82,7 +82,7 @@ namespace CustomerDebt
 			this.customerCancel.Location = new System.Drawing.Point(254, 242);
 			this.customerCancel.Name = "customerCancel";
 			this.customerCancel.Size = new System.Drawing.Size(62, 34);
-			this.customerCancel.TabIndex = 7;
+			this.customerCancel.TabIndex = 8;
 			this.customerCancel.Text = "&Cancel";
 			this.customerCancel.UseVisualStyleBackColor = true;
 			this.customerCancel.Click += new System.EventHandler(this.CustomerCancelClick);
@@ -100,12 +100,19 @@ namespace CustomerDebt
 			// customerPhone
 			// 
 			this.customerPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.customerPhone.HidePromptOnLeave = true;
+			this.customerPhone.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
 			this.customerPhone.Location = new System.Drawing.Point(170, 178);
 			this.customerPhone.Mask = "(999) 000-0000";
 			this.customerPhone.Name = "customerPhone";
 			this.customerPhone.Size = new System.Drawing.Size(144, 27);
 			this.customerPhone.TabIndex = 5;
+			this.customerPhone.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
 			this.customerPhone.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.CustomerPhoneMaskInputRejected);
+			this.customerPhone.TabIndexChanged += new System.EventHandler(this.CustomerPhoneTabIndexChanged);
+			this.customerPhone.TabStopChanged += new System.EventHandler(this.CustomerPhoneTabStopChanged);
+			this.customerPhone.Enter += new System.EventHandler(this.CustomerPhoneEnter);
+			this.customerPhone.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CustomerPhoneMouseUp);
 			// 
 			// label3
 			// 
@@ -123,6 +130,7 @@ namespace CustomerDebt
 			this.customerEmail.Name = "customerEmail";
 			this.customerEmail.Size = new System.Drawing.Size(144, 27);
 			this.customerEmail.TabIndex = 3;
+			this.customerEmail.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CustomerEmailMouseUp);
 			// 
 			// label2
 			// 
@@ -145,10 +153,16 @@ namespace CustomerDebt
 			// customerName
 			// 
 			this.customerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.customerName.HidePromptOnLeave = true;
 			this.customerName.Location = new System.Drawing.Point(170, 49);
 			this.customerName.Name = "customerName";
 			this.customerName.Size = new System.Drawing.Size(144, 27);
 			this.customerName.TabIndex = 0;
+			this.customerName.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+			this.customerName.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.CustomerNameMaskInputRejected);
+			this.customerName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CustomerNameKeyPress);
+			this.customerName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CustomerNameKeyUp);
+			this.customerName.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CustomerNameMouseUp);
 			// 
 			// CustomerForm
 			// 

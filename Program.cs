@@ -16,6 +16,7 @@ namespace CustomerDebt
 	/// </summary>
 	internal sealed class Program
 	{
+		
 		/// <summary>
 		/// Program entry point.
 		/// </summary>

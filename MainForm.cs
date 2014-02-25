@@ -21,10 +21,10 @@ namespace CustomerDebt
 	/// </summary>
 	public partial class MainForm : Form
 	{
-		
-		public BindingList<KeyValuePair<int, string>> customerBL;
+		 public static Sqldb db=new Sqldb();
+		public static BindingList<KeyValuePair<int, string>> customerBL;
 		public DataTable billsDT;
-		Sqldb db=new Sqldb();
+	
 		public CustomerForm customerForm;
 		public MainForm()
 		{
@@ -35,6 +35,19 @@ namespace CustomerDebt
 			InitializeComponent();
 			
 			loadCustomerList();
+			
+			
+
+		}
+		public MainForm(bool reload)
+		{
+			
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			
+		
 			
 			
 
@@ -50,6 +63,7 @@ namespace CustomerDebt
 //			DeleteCustomer.Enabled=false;
 //			}
 		}
+		
 		
 		public void loadCustomerList(){
 			
@@ -74,6 +88,13 @@ namespace CustomerDebt
 			customerList.DataSource=null;
 		}
 		
+//		public static void refreshCustomerList(){
+//			customerList.DataSource=null;
+//			customerBL=db.GetCustomerNames();
+//			customerList.DataSource=customerBL;
+//			
+//		}
+		
 		void CustomerListSelectedIndexChanged(object sender, EventArgs e)
 		{
 			//MessageBox.Show(customerList.SelectedValue.ToString());
@@ -87,7 +108,8 @@ namespace CustomerDebt
 		
 		void EditCustomerClick(object sender, EventArgs e)
 		{
-			
+			MessageBox.Show(customerList.SelectedIndex.ToString());
+				MessageBox.Show(customerList.SelectedValue.ToString());
 			if(Convert.ToInt32(customerList.SelectedValue)<0){return;}
 			
 			if(checkCustomerForm()==true)
@@ -95,11 +117,13 @@ namespace CustomerDebt
 			else
 			{
 				customerForm=new CustomerForm(Convert.ToInt32(customerList.SelectedValue));
+				customerForm.CustomerListIndex=customerList.SelectedIndex;
 				customerForm.Text="Edit Customer Info";
 				Customer currentCustomer=db.getCustomer(Convert.ToInt32(customerForm.CustomerIndex));
 				customerForm.customerName.Text=currentCustomer.Name;
 				customerForm.customerEmail.Text=currentCustomer.Email;
 				customerForm.customerPhone.Text=currentCustomer.Phone;
+				customerForm.CustomerIndex=currentCustomer.ID;
 				customerForm.Show();}
 			//customerForm=new CustomerForm();
 			//customerForm.Show();
@@ -181,6 +205,11 @@ namespace CustomerDebt
 			}
 			
 			
+		}
+		
+		void MainFormEnter(object sender, EventArgs e)
+		{
+		
 		}
 	}
 }

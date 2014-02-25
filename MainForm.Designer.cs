@@ -144,6 +144,7 @@ namespace CustomerDebt
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "CustomerDebt";
 			this.Load += new System.EventHandler(this.MainFormLoad);
+			this.Enter += new System.EventHandler(this.MainFormEnter);
 			((System.ComponentModel.ISupportInitialize)(this.billsGrid)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
@@ -152,7 +153,7 @@ namespace CustomerDebt
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.DataGridView billsGrid;
-		private System.Windows.Forms.ListBox customerList;
+		internal System.Windows.Forms.ListBox customerList;
 		private System.Windows.Forms.Button deleteCustomer;
 		private System.Windows.Forms.Button editCustomer;
 		private System.Windows.Forms.Button createCustomer;

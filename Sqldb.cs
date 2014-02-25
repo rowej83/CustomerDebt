@@ -27,6 +27,8 @@ namespace CustomerDebt
 		
 	{
 		public BindingList<KeyValuePair<int, string>> customerBL=new BindingList<KeyValuePair<int, string>>();
+		//public BindingList<KeyValuePair<int, string>> customerBL=new BindingList<KeyValuePair<int, string>>();
+		
 		//	public MainForm form;
 //		const string fileName = "customerDebt.db";
 //		private string connectionString="Data Source=" + fileName + ";Version=3;";
@@ -61,15 +63,20 @@ namespace CustomerDebt
 		}
 		
 		public BindingList<KeyValuePair<int, string>> GetCustomerNames(){
+			customerBL.Clear();
+			
+			
+			
+			
 			string filename2="customerDebt.db";
 			string myConnString="Data Source=" + filename2 + ";Version=3;";
-			string mySelectQuery = "select * from customers";
+			string mySelectQuery = "select * from customers order by name asc";
 			SQLiteConnection sqConnection = new SQLiteConnection(myConnString);
 			SQLiteCommand sqCommand = new SQLiteCommand(mySelectQuery,sqConnection);
 			sqCommand.CommandText=mySelectQuery;
 			sqConnection.Open();
 			SQLiteDataReader sqReader = sqCommand.ExecuteReader();
-			Console.WriteLine("checking");
+			Console.WriteLine("getcustomernames running");
 			//form.EditCustomer.Enabled=false;
 			try
 			{
@@ -80,7 +87,7 @@ namespace CustomerDebt
 					int id=Convert.ToInt32(sqReader.GetInt32(0));
 					string name=sqReader["name"].ToString();
 					customerBL.Add(new KeyValuePair<int, string>(id, name));
-					Console.WriteLine("test");
+					//Console.WriteLine("test");
 				}
 			}
 			finally
@@ -101,10 +108,10 @@ namespace CustomerDebt
 			SQLiteConnection sqConnection = new SQLiteConnection(myConnString);
 			SQLiteCommand sqCommand = new SQLiteCommand(mySelectQuery,sqConnection);
 			sqCommand.CommandText=mySelectQuery;
-		
+			
 			sqConnection.Open();
 			SQLiteDataReader sqReader = sqCommand.ExecuteReader();
-			Console.WriteLine("checking");
+			Console.WriteLine("test select running");
 			//form.EditCustomer.Enabled=false;
 			try
 			{
@@ -125,7 +132,7 @@ namespace CustomerDebt
 				
 			}
 		}
-	
+		
 		public Customer getCustomer(int index){
 			Customer returnCustomer=null;
 			string filename2="customerDebt.db";
@@ -137,14 +144,14 @@ namespace CustomerDebt
 			sqCommand.Parameters.AddWithValue("@id",index);
 			sqConnection.Open();
 			//Console.WriteLine("get customer ran");
-				SQLiteDataReader sqReader = sqCommand.ExecuteReader();
-		try
+			SQLiteDataReader sqReader = sqCommand.ExecuteReader();
+			try
 			{
 				if (sqReader.Read())
 				{
 					//	Console.WriteLine(sqReader.GetInt32(0) + ", " + sqReader.GetString(1));
-				//	Console.WriteLine(sqReader["name"] + ", " + sqReader.GetInt32(0)+sqReader["address"]);
-				returnCustomer=new Customer(index,sqReader["name"].ToString(),sqReader["email"].ToString(),sqReader["phone"].ToString());
+					//	Console.WriteLine(sqReader["name"] + ", " + sqReader.GetInt32(0)+sqReader["address"]);
+					returnCustomer=new Customer(index,sqReader["name"].ToString(),sqReader["email"].ToString(),sqReader["phone"].ToString());
 					
 				}
 			}
@@ -163,7 +170,7 @@ namespace CustomerDebt
 		public void editCustomer(Customer editCustomer){
 			int id=editCustomer.ID;
 			string name=editCustomer.Name;
-		
+			
 			string phone=editCustomer.Phone;
 			string email=editCustomer.Email;
 			string filename2="customerDebt.db";
@@ -174,22 +181,22 @@ namespace CustomerDebt
 			sqCommand.CommandText=mySelectQuery;
 			sqCommand.Parameters.AddWithValue("@id",id);
 			sqCommand.Parameters.AddWithValue("@name",name);
-		
+			
 			sqCommand.Parameters.AddWithValue("@email",email);
 			sqCommand.Parameters.AddWithValue("@phone",phone);
 			sqConnection.Open();
-			Console.WriteLine("get customer ran");
+			Console.WriteLine("edit  customer ran");
 			sqCommand.ExecuteNonQuery();
 			sqConnection.Close();
-		
+			
 		}
 		
 		public int addCustomer(Customer newCustomer){
-		string name=newCustomer.Name;
+			string name=newCustomer.Name;
 
 			string phone=newCustomer.Phone;
 			string email=newCustomer.Email;
-					string filename2="customerDebt.db";
+			string filename2="customerDebt.db";
 			string myConnString="Data Source=" + filename2 + ";Version=3;";
 			string mySelectQuery = "insert into customers(name,phone,email)  values(@name,@phone,@email);"+"Select last_insert_rowid();";
 			SQLiteConnection sqConnection = new SQLiteConnection(myConnString);
@@ -199,23 +206,23 @@ namespace CustomerDebt
 			
 			sqCommand.Parameters.AddWithValue("@email",email);
 			sqCommand.Parameters.AddWithValue("@phone",phone);
-				sqConnection.Open();
-			Console.WriteLine("get customer ran");
+			sqConnection.Open();
+			Console.WriteLine("add customer ran");
 			int returnInt=Convert.ToInt32(sqCommand.ExecuteScalar())	;
-	
+			
 			sqConnection.Close();
 			return returnInt;
 		}
 		
 		
 		
-			public void deleteCustomer(int id){
+		public void deleteCustomer(int id){
 
-					string filename2="customerDebt.db";
+			string filename2="customerDebt.db";
 			string myConnString="Data Source=" + filename2 + ";Version=3;";
- 
+			
 			string myQuery="delete from customers where id=@id";
- 			string myQuery2="delete from bills where customer_id=@id";
+			string myQuery2="delete from bills where customer_id=@id";
 			SQLiteConnection sqConnection = new SQLiteConnection(myConnString);
 			SQLiteCommand sqCommand = new SQLiteCommand(myQuery,sqConnection);
 			SQLiteCommand sqCommand2=new SQLiteCommand(myQuery2,sqConnection);
@@ -223,14 +230,14 @@ namespace CustomerDebt
 			sqCommand.CommandText=myQuery;
 			sqCommand2.Parameters.AddWithValue("@id",id);
 			sqCommand.Parameters.AddWithValue("@id",id);
-	
 			
-				sqConnection.Open();
-	
+			
+			sqConnection.Open();
+			
 			sqCommand.ExecuteNonQuery();
 			sqCommand2.ExecuteNonQuery();
 			sqConnection.Close();
-		
+			
 		}
 		
 		public DataTable getBills(int index)
@@ -248,11 +255,11 @@ namespace CustomerDebt
 			conn.Close();
 			conn.Dispose();
 			return returnDT;
-		
+			
 		}
-	
-	
-	
+		
+		
+		
 	} // end of class
 
 
