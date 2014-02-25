@@ -80,16 +80,29 @@ customerEmail.Text="";
 		
 		void CustomerSaveClick(object sender, EventArgs e)
 		{
-//			MessageBox.Show(customerPhone.Text.ToString());
-//			
-//			if(checkIfEmail(this.customerEmail.Text.ToString()))
-//				
-//			{
-//				MessageBox.Show("Is valid Email");
-//			}else{
-//				MessageBox.Show("Not valid email");
-//			}
+//check if fields are filled out
+if(this.customerName.MaskCompleted && this.customerEmail.MaskCompleted && this.customerPhone.MaskCompleted)
+{
+//all fields are filled out
+MessageBox.Show("All fields filled in");
+return;
+}else{
+//fields missing
+
+MessageBox.Show("Please check all fields and retry.");
+return;
+}
 			
+			
+			
+			if(this.CustomerIndex<0)
+			{
+				//new customer
+			}
+			else
+			{
+				//current customer..update
+			}
 			
 			
 			
