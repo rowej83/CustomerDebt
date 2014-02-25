@@ -17,7 +17,7 @@ namespace CustomerDebt
 	{
 		public int CustomerID{get;set;}
 		public string Amount{get;set;}
-		public string Partial{get;set;}
+		
 		public string Date{get;set;}
 		public int Complete{get;set;}
 		
@@ -25,7 +25,6 @@ namespace CustomerDebt
 		{
 			this.CustomerID=customerID;
 			this.Amount=amount;
-			this.Partial=partialamount;
 			this.Date=date;
 			this.Complete=complete;
 			

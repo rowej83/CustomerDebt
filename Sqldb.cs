@@ -245,7 +245,7 @@ namespace CustomerDebt
 			string filename2="customerDebt.db";
 			DataTable returnDT=new DataTable();
 			string myConnString="Data Source=" + filename2 + ";Version=3;";
-			string myQuery="select * from bills where customer_id=@id";
+			string myQuery="select id,date,amount,complete from bills where customer_id=@id";
 			SQLiteConnection conn=new SQLiteConnection(myConnString);
 			conn.Open();
 

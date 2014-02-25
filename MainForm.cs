@@ -108,8 +108,8 @@ namespace CustomerDebt
 		
 		void EditCustomerClick(object sender, EventArgs e)
 		{
-			MessageBox.Show(customerList.SelectedIndex.ToString());
-				MessageBox.Show(customerList.SelectedValue.ToString());
+//			MessageBox.Show(customerList.SelectedIndex.ToString());
+//				MessageBox.Show(customerList.SelectedValue.ToString());
 			if(Convert.ToInt32(customerList.SelectedValue)<0){return;}
 			
 			if(checkCustomerForm()==true)
@@ -151,11 +151,11 @@ namespace CustomerDebt
 			billsDT=db.getBills(index);
 			billsGrid.DataSource=billsDT;
 			billsGrid.Columns["id"].Visible=false;
-			billsGrid.Columns["customer_id"].Visible=false;
+			//billsGrid.Columns["customer_id"].Visible=false;
+				billsGrid.Columns["date"].HeaderText="Date";
 			billsGrid.Columns["amount"].HeaderText="Amount";
 			billsGrid.Columns["complete"].Visible=false;
-			billsGrid.Columns["partial"].HeaderText="Partial";
-			billsGrid.Columns["date"].HeaderText="Date";
+		
 			
 		}
 		

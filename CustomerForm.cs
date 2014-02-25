@@ -175,13 +175,13 @@ namespace CustomerDebt
 		void CustomerPhoneEnter(object sender, EventArgs e)
 		{
 			
-		//	customerPhone.Select(1,customerPhone.Text.Length);
+			//	customerPhone.Select(1,customerPhone.Text.Length);
 			
 		}
 		
 		void CustomerPhoneMouseUp(object sender, MouseEventArgs e)
 		{
-		//customerPhone.Select(0,0);
+			//customerPhone.Select(0,0);
 		}
 		
 		void CustomerEmailMouseUp(object sender, MouseEventArgs e)
@@ -224,30 +224,30 @@ namespace CustomerDebt
 		
 		
 		
-		   static string UppercaseWords(string value)
-    {
-	char[] array = value.ToCharArray();
-	// Handle the first letter in the string.
-	if (array.Length >= 1)
-	{
-	    if (char.IsLower(array[0]))
-	    {
-		array[0] = char.ToUpper(array[0]);
-	    }
-	}
-	// Scan through the letters, checking for spaces.
-	// ... Uppercase the lowercase letters following spaces.
-	for (int i = 1; i < array.Length; i++)
-	{
-	    if (array[i - 1] == ' ')
-	    {
-		if (char.IsLower(array[i]))
+		static string UppercaseWords(string value)
 		{
-		    array[i] = char.ToUpper(array[i]);
+			char[] array = value.ToCharArray();
+			// Handle the first letter in the string.
+			if (array.Length >= 1)
+			{
+				if (char.IsLower(array[0]))
+				{
+					array[0] = char.ToUpper(array[0]);
+				}
+			}
+			// Scan through the letters, checking for spaces.
+			// ... Uppercase the lowercase letters following spaces.
+			for (int i = 1; i < array.Length; i++)
+			{
+				if (array[i - 1] == ' ')
+				{
+					if (char.IsLower(array[i]))
+					{
+						array[i] = char.ToUpper(array[i]);
+					}
+				}
+			}
+			return new string(array);
 		}
-	    }
-	}
-	return new string(array);
-    }
 	}
 }
