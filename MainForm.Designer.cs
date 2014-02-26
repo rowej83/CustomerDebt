@@ -59,6 +59,7 @@ namespace CustomerDebt
 			this.billsGrid.ReadOnly = true;
 			this.billsGrid.RowHeadersVisible = false;
 			this.billsGrid.RowTemplate.Height = 24;
+			this.billsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.billsGrid.Size = new System.Drawing.Size(356, 180);
 			this.billsGrid.TabIndex = 5;
 			this.billsGrid.DataSourceChanged += new System.EventHandler(this.BillsGridDataSourceChanged);
@@ -153,7 +154,7 @@ namespace CustomerDebt
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.DataGridView billsGrid;
-		internal System.Windows.Forms.ListBox customerList;
+		public System.Windows.Forms.ListBox customerList;
 		private System.Windows.Forms.Button deleteCustomer;
 		private System.Windows.Forms.Button editCustomer;
 		private System.Windows.Forms.Button createCustomer;

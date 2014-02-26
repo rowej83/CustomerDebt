@@ -52,11 +52,19 @@ namespace CustomerDebt
 			string filename2="customerDebt.db";
 			string myConnString="Data Source=" + filename2 + ";Version=3;";
 			string mySelectQuery = "select * from customers order by name asc";
+			string myBillSelectQuery="select sum(amount) as amountsum,count(id) as billqty from bills where customer_id=@id and complete=0"; 
+		string name="";
+		int id;
 			SQLiteConnection sqConnection = new SQLiteConnection(myConnString);
+			//SQLiteConnection sqConnection2 = new SQLiteConnection(myConnString);
+			//	SQLiteCommand sqBillCommand=new SQLiteCommand(sqConnection2);
+				
 			SQLiteCommand sqCommand = new SQLiteCommand(mySelectQuery,sqConnection);
 			sqCommand.CommandText=mySelectQuery;
 			sqConnection.Open();
+			//sqConnection2.Open();
 			SQLiteDataReader sqReader = sqCommand.ExecuteReader();
+			//SQLiteDataReader sqBillReader=null;
 			Console.WriteLine("getcustomernames running");
 			//form.EditCustomer.Enabled=false;
 			try
@@ -65,8 +73,20 @@ namespace CustomerDebt
 				{
 					//	Console.WriteLine(sqReader.GetInt32(0) + ", " + sqReader.GetString(1));
 					//	Console.WriteLine(sqReader["name"] + ", " + sqReader.GetString(1));
-					int id=Convert.ToInt32(sqReader.GetInt32(0));
-					string name=sqReader["name"].ToString();
+				id=Convert.ToInt32(sqReader.GetInt32(0));
+				name=sqReader["name"].ToString();
+//					sqBillCommand.CommandText=myBillSelectQuery;
+//					sqBillCommand.Parameters.AddWithValue("@id",id);
+//					sqBillReader=sqBillCommand.ExecuteReader();
+//					if(sqBillReader.Read()){
+//					//has entry TODO change below tostring to include # of bills and total
+//						name=sqReader["name"].ToString();
+//					}else{
+//					//no entry
+//	
+//					name=sqReader["name"].ToString();
+//					}
+//					 
 					customerBL.Add(new KeyValuePair<int, string>(id, name));
 					//Console.WriteLine("test");
 				}
@@ -75,8 +95,10 @@ namespace CustomerDebt
 			{
 				// always call Close when done reading.
 				sqReader.Close();
+				//sqBillReader.Close();
 				// always call Close when done reading.
 				sqConnection.Close();
+				//sqConnection2.Close();
 				
 			}
 			return customerBL;
@@ -225,13 +247,21 @@ namespace CustomerDebt
 			string filename2="customerDebt.db";
 			DataTable returnDT=new DataTable();
 			string myConnString="Data Source=" + filename2 + ";Version=3;";
-			string myQuery="select id,date,amount,complete from bills where customer_id=@id";
+			string myQuery="select id,date,amount,complete from bills where customer_id=@id and complete=0";
 			SQLiteConnection conn=new SQLiteConnection(myConnString);
 			conn.Open();
-
+			
 			SQLiteDataAdapter da=new SQLiteDataAdapter(myQuery,conn);
 			da.SelectCommand.Parameters.AddWithValue("@id",index);
 			da.Fill(returnDT);
+			returnDT.Columns.Add("amountstring",typeof(string));
+			foreach (DataRow row in returnDT.Rows)
+{
+				double newAmount=Convert.ToDouble(row["amount"]);
+			row["amountstring"] = newAmount.ToString("C");
+	
+			}
+	
 			conn.Close();
 			conn.Dispose();
 			return returnDT;

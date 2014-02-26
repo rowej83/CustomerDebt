@@ -21,10 +21,10 @@ namespace CustomerDebt
 	/// </summary>
 	public partial class MainForm : Form
 	{
-		 public static Sqldb db=new Sqldb();
+		public static Sqldb db=new Sqldb();
 		public static BindingList<KeyValuePair<int, string>> customerBL;
 		public DataTable billsDT;
-	
+		
 		public CustomerForm customerForm;
 		public MainForm()
 		{
@@ -42,7 +42,7 @@ namespace CustomerDebt
 		
 		//overloaded to allow CustomerForm to call MainForms controls - most likely the wrong way to do it
 		
-		//TODO Learn how to structure form controls between classes. 
+		//TODO Learn how to structure form controls between classes.
 		
 		public MainForm(bool reload)
 		{
@@ -52,7 +52,7 @@ namespace CustomerDebt
 			//
 			InitializeComponent();
 			
-		
+			
 			
 			
 
@@ -81,6 +81,43 @@ namespace CustomerDebt
 				editCustomer.Enabled=false;
 				deleteCustomer.Enabled=false;
 			}
+		}
+		
+		public void loadCustomerList(int index){
+			//TODO fix loadcustomerlist so that it picks the previously selected item for after the edit.
+			int checkInt=index;
+			Console.WriteLine(checkInt.ToString());
+//			MessageBox.Show(customerBL[index].ToString());
+//			MessageBox.Show(customerList.SelectedItem.ToString());
+			//overloaded for saving current customer so customerlist selected index is for current customer
+			customerList.ValueMember="Key";
+			customerList.DisplayMember="Value";
+			customerBL=db.GetCustomerNames();
+			customerList.DataSource=customerBL;
+			
+			if(customerList.SelectedValue!=null){
+				editCustomer.Enabled=true;
+				deleteCustomer.Enabled=true;
+				
+			}else{
+				editCustomer.Enabled=false;
+				deleteCustomer.Enabled=false;
+			}
+			MessageBox.Show(customerList.SelectedItem.ToString());
+			customerList.SelectedValue=customerBL[index];
+			
+//			foreach( KeyValuePair<int, string> kvp in customerBL )
+//			{
+//				Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+//				Console.WriteLine(customerList.SelectedValue.ToString());
+//				if((int)kvp.Key==checkInt){
+//					this.customerList.SelectedItem=kvp;
+//					return;
+//				}
+//
+//
+//			}
+
 		}
 		public void nullCustomerList(){
 			
@@ -118,7 +155,7 @@ namespace CustomerDebt
 				customerForm.customerPhone.Text=currentCustomer.Phone;
 				customerForm.CustomerIndex=currentCustomer.ID;
 				customerForm.Show();}
-		
+			
 		}
 		
 		public bool checkCustomerForm(){
@@ -144,10 +181,11 @@ namespace CustomerDebt
 			billsGrid.DataSource=billsDT;
 			billsGrid.Columns["id"].Visible=false;
 			//billsGrid.Columns["customer_id"].Visible=false;
-				billsGrid.Columns["date"].HeaderText="Date";
-			billsGrid.Columns["amount"].HeaderText="Amount";
+			billsGrid.Columns["date"].HeaderText="Date";
+			//billsGrid.Columns["amount"].HeaderText="Amount";
+			billsGrid.Columns["amount"].Visible=false;
+			billsGrid.Columns["amountstring"].HeaderText="Amount";
 			billsGrid.Columns["complete"].Visible=false;
-		
 			
 		}
 		
@@ -201,7 +239,7 @@ namespace CustomerDebt
 		
 		void MainFormEnter(object sender, EventArgs e)
 		{
-		
+			
 		}
 	}
 }

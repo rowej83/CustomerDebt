@@ -119,7 +119,8 @@ namespace CustomerDebt
 					//MainForm.customerBL.Add(new KeyValuePair<int, string>(returnedInt, newCustomer.Name));
 					
 					this.CustomerIndex=returnedInt;
-					ResetCustomerList( new MainForm(true));
+							ResetCustomerList( new MainForm(true));
+						
 					this.Close();
 				}
 				else
@@ -127,7 +128,8 @@ namespace CustomerDebt
 					//current customer..update
 					Customer editCustomer=new Customer(this.CustomerIndex,UppercaseWords(this.customerName.Text.Trim()),this.customerEmail.Text.Trim(),this.customerPhone.Text.Trim());
 					MainForm.db.editCustomer(editCustomer);
-					ResetCustomerList( new MainForm(true));
+					
+					ResetCustomerList( new MainForm(true),this.CustomerListIndex);
 					this.Close();
 				}
 
@@ -157,6 +159,15 @@ MessageBox.Show("Please check input and retry.","Customer Input Error");
 	
 			myForm.loadCustomerList();
 	
+		}
+		
+			void ResetCustomerList(MainForm myForm, int customerListIndex){
+	
+			myForm.loadCustomerList(customerListIndex);
+//			myForm.customerList.SelectedItem=MainForm.customerBL[customerListIndex];
+//		myForm.customerList.SetSelected(CustomerListIndex,true);
+//			myForm.customerList.SelectedIndex=CustomerListIndex;
+		
 		}
 		
 		void CustomerPhoneEnter(object sender, EventArgs e)
