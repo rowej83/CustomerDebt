@@ -93,6 +93,7 @@ namespace CustomerDebt
 			customerName.Text="";
 			customerPhone.Text="";
 			customerEmail.Text="";
+			customerName.Focus();
 		}
 		
 		void CustomerCancelClick(object sender, EventArgs e)
@@ -123,24 +124,18 @@ namespace CustomerDebt
 				}
 				else
 				{
-					//MessageBox.Show();
 					//current customer..update
 					Customer editCustomer=new Customer(this.CustomerIndex,UppercaseWords(this.customerName.Text.Trim()),this.customerEmail.Text.Trim(),this.customerPhone.Text.Trim());
-					
 					MainForm.db.editCustomer(editCustomer);
-					
-					//MainForm.customerBL.RemoveAt(this.CustomerListIndex);
-					//MainForm.customerBL.Insert(this.CustomerListIndex,new KeyValuePair<int, string>(this.CustomerIndex, editCustomer.Name));
-					//MainForm.refreshCustomerList();
 					ResetCustomerList( new MainForm(true));
 					this.Close();
 				}
 
 
 			}else{
-				//fields missing
 
-				MessageBox.Show("Please check input and retry.","Customer Input Error");
+				//fields missing
+MessageBox.Show("Please check input and retry.","Customer Input Error");
 				this.customerName.Focus();
 
 				return;
@@ -159,17 +154,9 @@ namespace CustomerDebt
 			
 		}
 		void ResetCustomerList(MainForm myForm){
-			//MainForm.customerBL=MainForm.db.GetCustomerNames();
-			//MainForm.customerBL.ResetItem(this.CustomerIndex);
+	
 			myForm.loadCustomerList();
-			//MainForm.customerBL=null;
-			//	myForm.customerList.DataSource=null;
-			//	myForm.customerList.Items.Clear();
-			
-			//	MessageBox.Show(myForm.customerList.Items.Count.ToString());
-			
-			//MainForm.customerBL=MainForm.db.GetCustomerNames();
-			//myForm.customerList.DataSource=MainForm.customerBL;
+	
 		}
 		
 		void CustomerPhoneEnter(object sender, EventArgs e)

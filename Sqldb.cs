@@ -41,25 +41,6 @@ namespace CustomerDebt
 		public Sqldb()
 		{
 			
-			//this.form=form;
-//			#region
-//			dt=new DataTable();
-//
-//
-//			#endregion
-//
-//
-//			using(SQLiteConnection sqlConnection=new SQLiteConnection(connectionString)){
-//				sqlConnection.Open();
-//				da = new SQLiteDataAdapter("SELECT * FROM customers", sqlConnection);
-//				SQLiteCommand command=new SQLiteCommand();
-//				command.
-//				da.Fill(dt);
-//				cBuilder = new SQLiteCommandBuilder(da);
-			//}
-			
-
-			
 		}
 		
 		public BindingList<KeyValuePair<int, string>> GetCustomerNames(){
@@ -181,8 +162,7 @@ namespace CustomerDebt
 			sqCommand.CommandText=mySelectQuery;
 			sqCommand.Parameters.AddWithValue("@id",id);
 			sqCommand.Parameters.AddWithValue("@name",name);
-			
-			sqCommand.Parameters.AddWithValue("@email",email);
+		sqCommand.Parameters.AddWithValue("@email",email);
 			sqCommand.Parameters.AddWithValue("@phone",phone);
 			sqConnection.Open();
 			Console.WriteLine("edit  customer ran");

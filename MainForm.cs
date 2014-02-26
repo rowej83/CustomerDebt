@@ -39,6 +39,11 @@ namespace CustomerDebt
 			
 
 		}
+		
+		//overloaded to allow CustomerForm to call MainForms controls - most likely the wrong way to do it
+		
+		//TODO Learn how to structure form controls between classes. 
+		
 		public MainForm(bool reload)
 		{
 			
@@ -55,13 +60,7 @@ namespace CustomerDebt
 		
 		void MainFormLoad(object sender, EventArgs e)
 		{
-			
-			//customerList.DisplayName="Value";
-			//db.testselect();
-//			if(CustomerList.Items.Count==0){
-			//EditCustomer.Enabled=false;
-//			DeleteCustomer.Enabled=false;
-//			}
+
 		}
 		
 		
@@ -87,13 +86,7 @@ namespace CustomerDebt
 			
 			customerList.DataSource=null;
 		}
-		
-//		public static void refreshCustomerList(){
-//			customerList.DataSource=null;
-//			customerBL=db.GetCustomerNames();
-//			customerList.DataSource=customerBL;
-//			
-//		}
+
 		
 		void CustomerListSelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -125,8 +118,7 @@ namespace CustomerDebt
 				customerForm.customerPhone.Text=currentCustomer.Phone;
 				customerForm.CustomerIndex=currentCustomer.ID;
 				customerForm.Show();}
-			//customerForm=new CustomerForm();
-			//customerForm.Show();
+		
 		}
 		
 		public bool checkCustomerForm(){

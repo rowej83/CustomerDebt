@@ -60,18 +60,21 @@ namespace CustomerDebt
 			this.groupBox1.Controls.Add(this.label2);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.customerName);
-			this.groupBox1.Location = new System.Drawing.Point(21, 15);
+			this.groupBox1.Location = new System.Drawing.Point(29, 11);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(389, 314);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Size = new System.Drawing.Size(294, 263);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Customer Info";
 			// 
 			// customerClear
 			// 
-			this.customerClear.Location = new System.Drawing.Point(186, 242);
+			this.customerClear.Location = new System.Drawing.Point(191, 204);
+			this.customerClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.customerClear.Name = "customerClear";
-			this.customerClear.Size = new System.Drawing.Size(62, 34);
+			this.customerClear.Size = new System.Drawing.Size(75, 28);
 			this.customerClear.TabIndex = 7;
 			this.customerClear.Text = "Clea&r";
 			this.customerClear.UseVisualStyleBackColor = true;
@@ -79,9 +82,10 @@ namespace CustomerDebt
 			// 
 			// customerCancel
 			// 
-			this.customerCancel.Location = new System.Drawing.Point(254, 242);
+			this.customerCancel.Location = new System.Drawing.Point(112, 204);
+			this.customerCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.customerCancel.Name = "customerCancel";
-			this.customerCancel.Size = new System.Drawing.Size(62, 34);
+			this.customerCancel.Size = new System.Drawing.Size(75, 28);
 			this.customerCancel.TabIndex = 8;
 			this.customerCancel.Text = "&Cancel";
 			this.customerCancel.UseVisualStyleBackColor = true;
@@ -89,9 +93,10 @@ namespace CustomerDebt
 			// 
 			// customerSave
 			// 
-			this.customerSave.Location = new System.Drawing.Point(78, 238);
+			this.customerSave.Location = new System.Drawing.Point(30, 201);
+			this.customerSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.customerSave.Name = "customerSave";
-			this.customerSave.Size = new System.Drawing.Size(95, 43);
+			this.customerSave.Size = new System.Drawing.Size(71, 35);
 			this.customerSave.TabIndex = 6;
 			this.customerSave.Text = "&Save";
 			this.customerSave.UseVisualStyleBackColor = true;
@@ -102,10 +107,11 @@ namespace CustomerDebt
 			this.customerPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.customerPhone.HidePromptOnLeave = true;
 			this.customerPhone.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-			this.customerPhone.Location = new System.Drawing.Point(170, 178);
+			this.customerPhone.Location = new System.Drawing.Point(112, 138);
+			this.customerPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.customerPhone.Mask = "(999) 000-0000";
 			this.customerPhone.Name = "customerPhone";
-			this.customerPhone.Size = new System.Drawing.Size(144, 27);
+			this.customerPhone.Size = new System.Drawing.Size(103, 23);
 			this.customerPhone.TabIndex = 5;
 			this.customerPhone.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
 			this.customerPhone.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.CustomerPhoneMaskInputRejected);
@@ -116,9 +122,10 @@ namespace CustomerDebt
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(78, 178);
+			this.label3.Location = new System.Drawing.Point(42, 138);
+			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(58, 27);
+			this.label3.Size = new System.Drawing.Size(44, 22);
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Phone";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -126,26 +133,29 @@ namespace CustomerDebt
 			// customerEmail
 			// 
 			this.customerEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.customerEmail.Location = new System.Drawing.Point(170, 114);
+			this.customerEmail.Location = new System.Drawing.Point(112, 86);
+			this.customerEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.customerEmail.Name = "customerEmail";
-			this.customerEmail.Size = new System.Drawing.Size(144, 27);
+			this.customerEmail.Size = new System.Drawing.Size(137, 23);
 			this.customerEmail.TabIndex = 3;
 			this.customerEmail.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CustomerEmailMouseUp);
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(78, 114);
+			this.label2.Location = new System.Drawing.Point(42, 86);
+			this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(58, 27);
+			this.label2.Size = new System.Drawing.Size(44, 22);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Email";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(78, 49);
+			this.label1.Location = new System.Drawing.Point(42, 33);
+			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(58, 27);
+			this.label1.Size = new System.Drawing.Size(44, 22);
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Name";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -154,9 +164,10 @@ namespace CustomerDebt
 			// 
 			this.customerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.customerName.HidePromptOnLeave = true;
-			this.customerName.Location = new System.Drawing.Point(170, 49);
+			this.customerName.Location = new System.Drawing.Point(112, 33);
+			this.customerName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.customerName.Name = "customerName";
-			this.customerName.Size = new System.Drawing.Size(144, 27);
+			this.customerName.Size = new System.Drawing.Size(137, 23);
 			this.customerName.TabIndex = 0;
 			this.customerName.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
 			this.customerName.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.CustomerNameMaskInputRejected);
@@ -166,10 +177,11 @@ namespace CustomerDebt
 			// 
 			// CustomerForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(437, 341);
+			this.ClientSize = new System.Drawing.Size(347, 290);
 			this.Controls.Add(this.groupBox1);
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "CustomerForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "CustomerForm";
