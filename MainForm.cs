@@ -85,8 +85,7 @@ namespace CustomerDebt
 		
 		public void loadCustomerList(int index){
 			//TODO fix loadcustomerlist so that it picks the previously selected item for after the edit.
-			int checkInt=index;
-			Console.WriteLine(checkInt.ToString());
+
 //			MessageBox.Show(customerBL[index].ToString());
 //			MessageBox.Show(customerList.SelectedItem.ToString());
 			//overloaded for saving current customer so customerlist selected index is for current customer
@@ -103,20 +102,6 @@ namespace CustomerDebt
 				editCustomer.Enabled=false;
 				deleteCustomer.Enabled=false;
 			}
-			MessageBox.Show(customerList.SelectedItem.ToString());
-			customerList.SelectedValue=customerBL[index];
-			
-//			foreach( KeyValuePair<int, string> kvp in customerBL )
-//			{
-//				Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-//				Console.WriteLine(customerList.SelectedValue.ToString());
-//				if((int)kvp.Key==checkInt){
-//					this.customerList.SelectedItem=kvp;
-//					return;
-//				}
-//
-//
-//			}
 
 		}
 		public void nullCustomerList(){

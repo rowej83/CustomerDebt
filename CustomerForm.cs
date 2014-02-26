@@ -128,8 +128,10 @@ namespace CustomerDebt
 					//current customer..update
 					Customer editCustomer=new Customer(this.CustomerIndex,UppercaseWords(this.customerName.Text.Trim()),this.customerEmail.Text.Trim(),this.customerPhone.Text.Trim());
 					MainForm.db.editCustomer(editCustomer);
+					MainForm myMainForm=(MainForm)Application.OpenForms["MainForm"];
+					//ResetCustomerList( new MainForm(true),this.CustomerListIndex);
+									ResetCustomerList( myMainForm,this.CustomerListIndex);
 					
-					ResetCustomerList( new MainForm(true),this.CustomerListIndex);
 					this.Close();
 				}
 
@@ -164,7 +166,8 @@ MessageBox.Show("Please check input and retry.","Customer Input Error");
 			void ResetCustomerList(MainForm myForm, int customerListIndex){
 	
 			myForm.loadCustomerList(customerListIndex);
-//			myForm.customerList.SelectedItem=MainForm.customerBL[customerListIndex];
+		
+			myForm.customerList.SelectedItem=MainForm.customerBL[customerListIndex];
 //		myForm.customerList.SetSelected(CustomerListIndex,true);
 //			myForm.customerList.SelectedIndex=CustomerListIndex;
 		
